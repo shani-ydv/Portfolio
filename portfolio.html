@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shani - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --navy-blue: #0A2342;
+            --dark-bg: #07090F;
+            --accent-1: #FF6B6B;
+            --accent-2: #4ECDC4;
+            --text-primary: #F4F4F9;
+            --text-secondary: #B8B8B8;
+            --highlight: #FFD700;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--navy-blue);
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background-color: rgba(10, 35, 66, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-2);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-1);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 7rem 2rem;
+            background: linear-gradient(135deg, var(--navy-blue) 0%, var(--dark-bg) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-1) 0%, var(--highlight) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-1);
+            color: var(--text-primary);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-2);
+            color: var(--accent-2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(78, 205, 196, 0.1);
+        }
+
+        .profile-img {
+            max-width: 300px;
+            border-radius: 50%;
+            border: 3px solid var(--accent-2);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-1);
+            margin-top: 1rem;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, var(--navy-blue) 0%, #12263A 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(78, 205, 196, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(10, 35, 66, 0.4);
+        }
+
+        .project-image {
+            width: 90%;
+            height: 200px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--navy-blue);
+            border-radius: 8px;
+            border: 1px solid var(--accent-2);
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--accent-2);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--dark-bg);
+            border: 1px solid var(--accent-2);
+            border-radius: 4px;
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-1);
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark-bg);
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: var(--accent-2);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .profile-img {
+                margin: 0 auto;
+                max-width: 250px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Shani's Portfolio</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm Shani</h1>
+                <h2>B.Tech Computer Science Student</h2>
+                <p>A passionate undergraduate student specializing in Data Science . Currently pursuing my B.Tech at Maharana Pratap Engineering College,Kanpur.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="Shani_resume.pdf" class="btn btn-outline" target="_blank">View Resume</a>
+                </div>
+            </div>
+            <img src="shani.jpg" alt="Shani" class="profile-img">
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="text-secondary">Hi! I'm Shani, a Computer Science and Engineering student specializing in Data Science. I’m passionate about emerging technologies like Artificial Intelligence and Machine Learning, with a strong foundation in Data Structures and Algorithms. I've solved over 150+ problems on LeetCode and 130+ on GeeksforGeeks — always eager to learn and grow.</p>
+        <br>
+        <ul>
+            <li>2+ years of programming experience</li>
+            <li>Specialization in Data Science</li>
+            <li>Passion for solving real-world problems</li>
+        </ul>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <i class="fab fa-cuttlefish"></i>
+                <h3>C++</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-java"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <h3>SQL</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="newlogo.png" alt="DOST - AI Chatbot" class="project-image">
+                <h3>AI Chatbot</h3>
+                <p>Project Using HTML,CSS and Javascript</p>
+                <a href="https://dostchatbot.netlify.app" class="btn btn-primary" target="_blank">Live Demo</a>
+            </div>
+            <div class="project-card">
+                <img src="amazon.png" alt="Amazon Prime Clone" class="project-image">
+                <h3>Amazon Prime Clone</h3>
+                <p>Clone of Amazon Prime Video</p>
+                <a href="https://amazon-prime-clon-e.netlify.app" class="btn btn-primary" target="_blank">Live Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <input type="text" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <textarea placeholder="Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/shani-ydv" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shani-yadav-675b03250/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:yadavshani1994@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>© 2023 Shani. All rights reserved</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will respond within 24 hours.');
+            this.reset();
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(10, 35, 66, 0.98)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(10, 35, 66, 0.95)';
+            }
+        });
+
+        // Skill hover animation
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseout', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
